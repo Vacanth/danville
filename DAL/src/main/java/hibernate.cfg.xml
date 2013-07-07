@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">admin</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/PRODUCTDB</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.default_schema">PRODUCTDB</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.search.autoregister_listeners">false</property>
+        <property name="hibernate.show_sql">true</property>
+        <mapping class="com.vendertoll.dal.Listing" />
+        <mapping class="com.vendertoll.dal.ProductClassification" />
+        <mapping class="com.vendertoll.dal.BatchJob" />
+        <mapping class="com.vendertoll.dal.ProductVariationDetails" />
+        <mapping class="com.vendertoll.dal.ProductSpecification" />
+        <mapping class="com.vendertoll.dal.BatchWorkLog" />
+        <mapping class="com.vendertoll.dal.ShippingService" />
+        <mapping class="com.vendertoll.dal.ProductVariation" />
+        <mapping class="com.vendertoll.dal.ProductDescription" />
+        <mapping class="com.vendertoll.dal.SubscriptionDetail" />
+        <mapping class="com.vendertoll.dal.ReturnPolicy" />
+        <mapping class="com.vendertoll.dal.MerchantProductGroup" />
+        <mapping class="com.vendertoll.dal.ShippingPolicy" />
+        <mapping class="com.vendertoll.dal.MerchantProduct" />
+        <mapping class="com.vendertoll.dal.ProductAttribute" />
+        <mapping class="com.vendertoll.dal.ImageGroup" />
+        <mapping class="com.vendertoll.dal.Image" />
+        <mapping class="com.vendertoll.dal.AccountSubscription" />
+    </session-factory>
+</hibernate-configuration>

@@ -1,6 +1,6 @@
-package com.vendertool.dal.product;
+package com.vendertool.dal.listing;
 
-// Generated May 26, 2013 5:21:40 PM by Hibernate Tools 3.4.0.CR1
+// Generated Jul 6, 2013 10:59:54 PM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.Date;

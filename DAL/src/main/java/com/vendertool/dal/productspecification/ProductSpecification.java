@@ -1,6 +1,6 @@
 package com.vendertool.dal.productspecification;
 
-// Generated May 17, 2013 11:06:45 PM by Hibernate Tools 3.4.0.CR1
+// Generated Jul 6, 2013 10:59:54 PM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,8 +19,7 @@ import javax.persistence.TemporalType;
 public class ProductSpecification implements java.io.Serializable {
 
 	private long productSpecificationId;
-	private long refId;
-	private Byte refType;
+	private long productId;
 	private Byte weightUnit;
 	private BigDecimal weight;
 	private Byte dimensionUnit;
@@ -33,18 +32,17 @@ public class ProductSpecification implements java.io.Serializable {
 	public ProductSpecification() {
 	}
 
-	public ProductSpecification(long productSpecificationId, long refId) {
+	public ProductSpecification(long productSpecificationId, long productId) {
 		this.productSpecificationId = productSpecificationId;
-		this.refId = refId;
+		this.productId = productId;
 	}
 
-	public ProductSpecification(long productSpecificationId, long refId,
-			Byte refType, Byte weightUnit, BigDecimal weight,
-			Byte dimensionUnit, BigDecimal width, BigDecimal length,
-			BigDecimal height, Date lastModifiedDate, Date createDate) {
+	public ProductSpecification(long productSpecificationId, long productId,
+			Byte weightUnit, BigDecimal weight, Byte dimensionUnit,
+			BigDecimal width, BigDecimal length, BigDecimal height,
+			Date lastModifiedDate, Date createDate) {
 		this.productSpecificationId = productSpecificationId;
-		this.refId = refId;
-		this.refType = refType;
+		this.productId = productId;
 		this.weightUnit = weightUnit;
 		this.weight = weight;
 		this.dimensionUnit = dimensionUnit;
@@ -65,22 +63,13 @@ public class ProductSpecification implements java.io.Serializable {
 		this.productSpecificationId = productSpecificationId;
 	}
 
-	@Column(name = "REF_ID", nullable = false)
-	public long getRefId() {
-		return this.refId;
+	@Column(name = "PRODUCT_ID", nullable = false)
+	public long getProductId() {
+		return this.productId;
 	}
 
-	public void setRefId(long refId) {
-		this.refId = refId;
-	}
-
-	@Column(name = "REF_TYPE")
-	public Byte getRefType() {
-		return this.refType;
-	}
-
-	public void setRefType(Byte refType) {
-		this.refType = refType;
+	public void setProductId(long productId) {
+		this.productId = productId;
 	}
 
 	@Column(name = "WEIGHT_UNIT")

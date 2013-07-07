@@ -28,7 +28,7 @@ public class DalTest {
 			ProductSpecificationDao accountDao = (ProductSpecificationDao) appContext.getBean("productSpecificationDAO"); 
 			 ProductSpecification productSpe = new ProductSpecification();
 			 productSpe.setCreateDate(new Date());
-			 productSpe.setRefId(123);
+			 productSpe.setProductId(123);
 			 productSpe.setWidth(new BigDecimal(12));
 			 productSpe.setHeight(new BigDecimal(12));
 			 productSpe.setHeight(new BigDecimal(12));

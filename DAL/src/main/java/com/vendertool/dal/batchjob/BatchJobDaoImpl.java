@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.vendertool.dal.productspecification;
+package com.vendertool.dal.batchjob;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
@@ -13,15 +13,15 @@ import com.vendertool.dal.BaseDaoImpl;
  *HibernateDaoSupport
  */
 
-public class ProductSpecificationDaoImpl extends BaseDaoImpl implements ProductSpecificationDao {
+public class BatchJobDaoImpl extends BaseDaoImpl implements BatchJobDao {
 
 	/* (non-Javadoc)
 	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#save(com.vendertool.inventory.DBL.BO.MerchantProduct)
 	 */
-	public void insert (ProductSpecification productSpecification) {
+	public void insert (BatchJob batchJob) {
 		// TODO Auto-generated method stub
 		
-		getHibernateTemplate().save(productSpecification);
+		getHibernateTemplate().save(batchJob);
 		
 		
 	}
@@ -29,33 +29,31 @@ public class ProductSpecificationDaoImpl extends BaseDaoImpl implements ProductS
 	/* (non-Javadoc)
 	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#update(com.vendertool.inventory.DBL.BO.MerchantProduct)
 	 */
-	public void update(ProductSpecification productSpecification) {
+	public void update(BatchJob batchJob) {
 		// TODO Auto-generated method stub
-		getHibernateTemplate().update(productSpecification);
+		getHibernateTemplate().update(batchJob);
 
 	}
 
 	/* (non-Javadoc)
 	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#delete(com.vendertool.inventory.DBL.BO.MerchantProduct)
 	 */
-	public void delete(ProductSpecification productSpecification) {
+	public void delete(BatchJob batchJob) {
 		// TODO Auto-generated method stub
-		getHibernateTemplate().delete(productSpecification);
+		getHibernateTemplate().delete(batchJob);
 
 	}
 
 	/* (non-Javadoc)
 	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#findByStockCode(com.vendertool.inventory.DBL.BO.MerchantProduct)
 	 */
-	public List<ProductSpecification> findByRefIdAndRefType(long refId,Byte refType) {
+	public List<BatchJob> findByBatchJobId(long batchJobId) {
 		// TODO Auto-generated method stub
-		String sql = "select * from Product_Specification where ref_id = :ref_id and ref_type = :ref_type";
+		String sql = "select * from batch_job where batch_job_id = :batch_job_id";
 		SQLQuery query=getSession().createSQLQuery(sql);
-		query.setParameter("ref_id", refId);
-		query.addEntity(ProductSpecification.class);
-		query.setParameter("ref_type", refType);
-		query.addEntity(ProductSpecification.class);
-		List<ProductSpecification> results = query.list();
+		query.setParameter("batch_job_id", batchJobId);
+		query.addEntity(BatchJob.class);
+		List<BatchJob> results = query.list();
 		return  results;
 	}
 

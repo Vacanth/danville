@@ -1,4 +1,4 @@
-package com.vendertool.dal.product;
+package com.vendertool.dal.listing;
 
 import java.util.List;
 
