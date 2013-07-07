@@ -26,6 +26,11 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 			<list>
 				<!-- Inventory -->
 				<value>com.vendertool.dal.productspecification.ProductSpecification</value>
+				<value>com.vendertool.dal.image.Image</value>
+				<value>com.vendertool.dal.merchantproduct.MerchantProduct</value>
+				<value>com.vendertool.dal.productattribute.ProductAttribute</value>
+				<value>com.vendertool.dal.productdescription.ProductDescription</value>
+				<value>com.vendertool.dal.productvariation.ProductVariation</value>
 			</list>
 		</property>
 	</bean>
@@ -34,5 +39,23 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	<bean id="productSpecificationDAO" class="com.vendertool.dal.productspecification.ProductSpecificationDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-        
+	<bean id="imageDAO" class="com.vendertool.dal.image.ImageDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		<bean id="merchantProductDAO" class="com.vendertool.dal.merchantproduct.MerchantProductDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		<bean id="productAttributeDAO" class="com.vendertool.dal.productattribute.ProductAttributeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		<bean id="productDescriptionDAO" class="com.vendertool.dal.productdescription.ProductDescriptionDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		<bean id="productVariationDAO" class="com.vendertool.dal.productvariation.ProductVariationDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+		<bean id="productVariationDetailsDAO" class="com.vendertool.dal.productvariationdetails.ProductVariationDetailsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	    
 </beans>
