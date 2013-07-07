@@ -5,6 +5,8 @@ package com.vendertool.dal.merchantproduct;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.vendertool.dal.BaseDaoImpl;
 
@@ -15,6 +17,17 @@ import com.vendertool.dal.BaseDaoImpl;
 
 public class MerchantProductDaoImpl extends BaseDaoImpl implements MerchantProductDao {
 
+	static private MerchantProductDao merchantProductDao;
+
+	public static MerchantProductDao getInstance() {
+		if (merchantProductDao == null) {
+			ApplicationContext appContext = new ClassPathXmlApplicationContext(
+					"BeanLocations.xml");
+			merchantProductDao = (MerchantProductDao) appContext
+					.getBean("merchantProductDAO");
+		}
+		return merchantProductDao;
+	}
 	/* (non-Javadoc)
 	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#save(com.vendertool.inventory.DBL.BO.MerchantProduct)
 	 */

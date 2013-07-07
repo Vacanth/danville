@@ -20,5 +20,6 @@
 	    <module>DAL</module>
 	    <module>Inventory</module>
 	    <module>SharedTypes</module>
+	    <module>EmailApp</module>
 	</modules>
 </project>
