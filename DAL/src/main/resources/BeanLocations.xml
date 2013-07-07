@@ -18,7 +18,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 				<prop key="hibernate.current_session_context_class">thread</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.search.autoregister_listeners">false</prop>
-				<prop key="hibernate.connection.autocommit">true</prop>
+				<prop key="hibernate.connection.autocommit">false</prop>
 			</props>
 		</property>
         
