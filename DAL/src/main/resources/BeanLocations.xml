@@ -1,0 +1,38 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"> -->
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+	<!-- <property name="dataSource" ref="dataSourceForJNDI"/> -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.bytecode.use_reflection_optimizer">false</prop>
+				<prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+				<prop key="hibernate.connection.password">girish</prop>
+				<prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/productdb</prop>
+				<prop key="hibernate.connection.username">root</prop>
+				<prop key="hibernate.current_session_context_class">thread</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.search.autoregister_listeners">false</prop>
+				<prop key="hibernate.connection.autocommit">true</prop>
+			</props>
+		</property>
+        
+		<property name="annotatedClasses">
+			<list>
+				<!-- Inventory -->
+				<value>com.vendertool.dal.productspecification.ProductSpecification</value>
+			</list>
+		</property>
+	</bean>
+	<!-- Hibernate session factory -->
+
+	<bean id="productSpecificationDAO" class="com.vendertool.dal.productspecification.ProductSpecificationDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+        
+</beans>
