@@ -21,5 +21,6 @@
 	    <module>Inventory</module>
 	    <module>SharedTypes</module>
 	    <module>EmailApp</module>
+	    <module>MLAdapter</module>
 	</modules>
 </project>
