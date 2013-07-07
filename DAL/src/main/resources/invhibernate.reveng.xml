@@ -2,5 +2,12 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-  <table-filter match-name=".*"/>
+	<table-filter match-name="account" match-catalog="PRODUCTDB"></table-filter>
+	<table-filter match-name="account_marketplace"
+		match-catalog="PRODUCTDB">
+	</table-filter>
+	<table-filter match-name="account_subscription"
+		match-catalog="PRODUCTDB">
+	</table-filter>
+	<table-filter match-name="address" match-catalog="PRODUCTDB"></table-filter>
 </hibernate-reverse-engineering>

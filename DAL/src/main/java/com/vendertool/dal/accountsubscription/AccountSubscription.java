@@ -1,13 +1,11 @@
 package com.vendertool.dal.accountsubscription;
 
-// Generated Jul 6, 2013 10:59:54 PM by Hibernate Tools 3.4.0.CR1
+// Generated Jul 7, 2013 3:05:24 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,26 +17,33 @@ import javax.persistence.TemporalType;
 @Table(name = "account_subscription", catalog = "PRODUCTDB")
 public class AccountSubscription implements java.io.Serializable {
 
-	private AccountSubscriptionId id;
-	private Long subscriptionId;
+	private long accountSubscriptionId;
+	private long accountId;
+	private Integer subscriptionId;
 	private Short subscriptionType;
 	private Date startDate;
 	private Date endDate;
 	private Date modifyDate;
 	private String changeWho;
 	private Date createDate;
+	private int discountId;
 
 	public AccountSubscription() {
 	}
 
-	public AccountSubscription(AccountSubscriptionId id) {
-		this.id = id;
+	public AccountSubscription(long accountSubscriptionId, long accountId,
+			int discountId) {
+		this.accountSubscriptionId = accountSubscriptionId;
+		this.accountId = accountId;
+		this.discountId = discountId;
 	}
 
-	public AccountSubscription(AccountSubscriptionId id, Long subscriptionId,
-			Short subscriptionType, Date startDate, Date endDate,
-			Date modifyDate, String changeWho, Date createDate) {
-		this.id = id;
+	public AccountSubscription(long accountSubscriptionId, long accountId,
+			Integer subscriptionId, Short subscriptionType, Date startDate,
+			Date endDate, Date modifyDate, String changeWho, Date createDate,
+			int discountId) {
+		this.accountSubscriptionId = accountSubscriptionId;
+		this.accountId = accountId;
 		this.subscriptionId = subscriptionId;
 		this.subscriptionType = subscriptionType;
 		this.startDate = startDate;
@@ -46,26 +51,34 @@ public class AccountSubscription implements java.io.Serializable {
 		this.modifyDate = modifyDate;
 		this.changeWho = changeWho;
 		this.createDate = createDate;
+		this.discountId = discountId;
 	}
 
-	@EmbeddedId
-	@AttributeOverrides({
-			@AttributeOverride(name = "accountSubscriptionId", column = @Column(name = "ACCOUNT_SUBSCRIPTION_ID", nullable = false, precision = 18, scale = 0)),
-			@AttributeOverride(name = "accountId", column = @Column(name = "ACCOUNT_ID", nullable = false, precision = 18, scale = 0)) })
-	public AccountSubscriptionId getId() {
-		return this.id;
+	@Id
+	@Column(name = "ACCOUNT_SUBSCRIPTION_ID", unique = true, nullable = false)
+	public long getAccountSubscriptionId() {
+		return this.accountSubscriptionId;
 	}
 
-	public void setId(AccountSubscriptionId id) {
-		this.id = id;
+	public void setAccountSubscriptionId(long accountSubscriptionId) {
+		this.accountSubscriptionId = accountSubscriptionId;
 	}
 
-	@Column(name = "SUBSCRIPTION_ID", precision = 18, scale = 0)
-	public Long getSubscriptionId() {
+	@Column(name = "ACCOUNT_ID", nullable = false)
+	public long getAccountId() {
+		return this.accountId;
+	}
+
+	public void setAccountId(long accountId) {
+		this.accountId = accountId;
+	}
+
+	@Column(name = "SUBSCRIPTION_ID")
+	public Integer getSubscriptionId() {
 		return this.subscriptionId;
 	}
 
-	public void setSubscriptionId(Long subscriptionId) {
+	public void setSubscriptionId(Integer subscriptionId) {
 		this.subscriptionId = subscriptionId;
 	}
 
@@ -125,6 +138,15 @@ public class AccountSubscription implements java.io.Serializable {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	@Column(name = "DISCOUNT_ID", nullable = false)
+	public int getDiscountId() {
+		return this.discountId;
+	}
+
+	public void setDiscountId(int discountId) {
+		this.discountId = discountId;
 	}
 
 }
