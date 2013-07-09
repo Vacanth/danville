@@ -2,11 +2,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.vendertool</groupId>
 	<artifactId>MLAdapter</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
+	<groupId>com.vendertool.mladapter</groupId>
+	<parent>
+		<groupId>com.vendertool</groupId>
+		<artifactId>VenderToolParent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
 	<name>MLAdapter</name>
 	<url>http://maven.apache.org</url>
 
