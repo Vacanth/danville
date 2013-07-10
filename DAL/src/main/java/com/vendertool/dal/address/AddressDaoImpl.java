@@ -5,8 +5,10 @@ package com.vendertool.dal.address;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
+import org.springframework.context.ApplicationContext;
 
 import com.vendertool.dal.BaseDaoImpl;
+import com.vendertool.dal.accountmarketplace.AccountMarketplaceDao;
 
 
 /**
@@ -15,6 +17,15 @@ import com.vendertool.dal.BaseDaoImpl;
  */
 public class AddressDaoImpl extends BaseDaoImpl implements AddressDao {
 
+	static private AddressDao addressDao;
+	public static AddressDao getInstance() {
+		if (addressDao == null) {
+			ApplicationContext appContext = getAppContext();
+			addressDao = (AddressDao) appContext
+					.getBean("accountDao");
+		}
+		return addressDao;
+	}
 	/* (non-Javadoc)
 	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#save(com.vendertool.inventory.DBL.BO.MerchantProduct)
 	 */

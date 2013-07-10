@@ -5,8 +5,10 @@ package com.vendertool.dal.batchjob;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
+import org.springframework.context.ApplicationContext;
 
 import com.vendertool.dal.BaseDaoImpl;
+import com.vendertool.dal.address.AddressDao;
 
 /**
  * @author murali
@@ -15,6 +17,15 @@ import com.vendertool.dal.BaseDaoImpl;
 
 public class BatchJobDaoImpl extends BaseDaoImpl implements BatchJobDao {
 
+	static private BatchJobDao batchJobDao;
+	public static BatchJobDao getInstance() {
+		if (batchJobDao == null) {
+			ApplicationContext appContext = getAppContext();
+			batchJobDao = (BatchJobDao) appContext
+					.getBean("batchJobDao");
+		}
+		return batchJobDao;
+	}
 	/* (non-Javadoc)
 	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#save(com.vendertool.inventory.DBL.BO.MerchantProduct)
 	 */

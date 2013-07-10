@@ -4,6 +4,10 @@
 package com.vendertool.dal.listing;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+
+import com.vendertool.dal.image.ImageDao;
+
 /**
  * @author murali
  *HibernateDaoSupport
@@ -11,6 +15,15 @@ import java.util.List;
 
 public class ListingDaoImpl extends com.vendertool.dal.BaseDaoImpl implements ListingDao {
 
+	static private ListingDao listingDao;
+	public static ListingDao getInstance() {
+		if (listingDao == null) {
+			ApplicationContext appContext = getAppContext();
+			listingDao = (ListingDao) appContext
+					.getBean("listingDao");
+		}
+		return listingDao;
+	}
 	/* (non-Javadoc)
 	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#save(com.vendertool.inventory.DBL.BO.MerchantProduct)
 	 */

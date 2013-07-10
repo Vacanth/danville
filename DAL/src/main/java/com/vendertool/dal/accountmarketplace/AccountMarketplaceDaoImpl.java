@@ -5,8 +5,10 @@ package com.vendertool.dal.accountmarketplace;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
+import org.springframework.context.ApplicationContext;
 
 import com.vendertool.dal.BaseDaoImpl;
+import com.vendertool.dal.account.AccountDao;
 
 /**
  * @author murali
@@ -15,9 +17,23 @@ import com.vendertool.dal.BaseDaoImpl;
 
 public class AccountMarketplaceDaoImpl extends BaseDaoImpl implements AccountMarketplaceDao {
 
+	static private AccountMarketplaceDao accountMarketplaceDao;
+	public static AccountMarketplaceDao getInstance() {
+		if (accountMarketplaceDao == null) {
+			ApplicationContext appContext = getAppContext();
+			accountMarketplaceDao = (AccountMarketplaceDao) appContext
+					.getBean("accountDao");
+		}
+		return accountMarketplaceDao;
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#save(com.vendertool.inventory.DBL.BO.MerchantProduct)
+	 * 
+	 * 
 	 */
+	
+	
 	public void insert (AccountMarketplace accountMarketplace) {
 		// TODO Auto-generated method stub
 		
@@ -57,10 +73,11 @@ public class AccountMarketplaceDaoImpl extends BaseDaoImpl implements AccountMar
 		return  results;
 	}
 
-	public List<AccountMarketplace> findByMPId(
+	public List<AccountMarketplace> findByAccountAndMPId(
 			AccountMarketplace accountMarketplace) {
-		String sql = "select * from account_marketplace where mp_id = :mp_id";
+		String sql = "select * from account_marketplace where account_id = : account_id and mp_id = :mp_id";
 		SQLQuery query=getSession().createSQLQuery(sql);
+		query.setParameter("account_id", accountMarketplace.getAccountId());
 		query.setParameter("mp_id", accountMarketplace.getMpId());
 		query.addEntity(AccountMarketplace.class);
 		List<AccountMarketplace> results = query.list();

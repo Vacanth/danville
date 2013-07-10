@@ -5,8 +5,10 @@ package com.vendertool.dal.productdescription;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
+import org.springframework.context.ApplicationContext;
 
 import com.vendertool.dal.BaseDaoImpl;
+import com.vendertool.dal.productattribute.ProductAttributeDao;
 
 /**
  * @author murali
@@ -15,6 +17,16 @@ import com.vendertool.dal.BaseDaoImpl;
 
 public class ProductDescriptionDaoImpl extends BaseDaoImpl implements ProductDescriptionDao {
 
+
+	static private ProductDescriptionDao productDescriptionDao;
+	public static ProductDescriptionDao getInstance() {
+		if (productDescriptionDao == null) {
+			ApplicationContext appContext = getAppContext();
+			productDescriptionDao = (ProductDescriptionDao) appContext
+					.getBean("productDescriptionDao");
+		}
+		return productDescriptionDao;
+	}
 	/* (non-Javadoc)
 	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#save(com.vendertool.inventory.DBL.BO.MerchantProduct)
 	 */

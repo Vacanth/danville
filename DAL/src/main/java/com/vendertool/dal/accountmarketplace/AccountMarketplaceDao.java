@@ -12,6 +12,6 @@ public interface AccountMarketplaceDao {
 	void delete(AccountMarketplace accountMarketplace);
 
 	List<AccountMarketplace> findByAccountId(AccountMarketplace accountMarketplace);
-	List<AccountMarketplace> findByMPId(AccountMarketplace accountMarketplace);
+	List<AccountMarketplace> findByAccountAndMPId(AccountMarketplace accountMarketplace);
 	
 }

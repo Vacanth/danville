@@ -5,8 +5,10 @@ package com.vendertool.dal.image;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
+import org.springframework.context.ApplicationContext;
 
 import com.vendertool.dal.BaseDaoImpl;
+import com.vendertool.dal.batchworklog.BatchWorkLogDao;
 
 /**
  * @author murali
@@ -14,7 +16,15 @@ import com.vendertool.dal.BaseDaoImpl;
  */
 
 public class ImageDaoImpl extends BaseDaoImpl implements ImageDao {
-
+	static private ImageDao imageDao;
+	public static ImageDao getInstance() {
+		if (imageDao == null) {
+			ApplicationContext appContext = getAppContext();
+			imageDao = (ImageDao) appContext
+					.getBean("imageDao");
+		}
+		return imageDao;
+	}
 	/* (non-Javadoc)
 	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#save(com.vendertool.inventory.DBL.BO.MerchantProduct)
 	 */
