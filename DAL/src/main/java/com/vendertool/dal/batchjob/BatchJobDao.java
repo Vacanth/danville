@@ -12,6 +12,6 @@ public interface BatchJobDao {
 	void delete(BatchJob batchJob);
 
 	List<BatchJob> findByBatchJobId(long batchJobId);
-	List<BatchJob> findByAccountId(long batchJobId);
+	List<BatchJob> findByAccountId(long accountId);
 	
 }
