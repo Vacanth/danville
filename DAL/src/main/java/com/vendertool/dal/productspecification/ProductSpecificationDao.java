@@ -11,6 +11,7 @@ public interface ProductSpecificationDao {
 
 	void delete(ProductSpecification productSpecification);
 
-	List<ProductSpecification> findByRefIdAndRefType(long refId,Byte refType);
+	List<ProductSpecification> findByproductSpecificationId(long productSpecificationId);
+	List<ProductSpecification> findByproductProductId(long productId);
 	
 }

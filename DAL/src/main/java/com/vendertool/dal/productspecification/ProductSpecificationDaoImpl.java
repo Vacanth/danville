@@ -55,16 +55,22 @@ public class ProductSpecificationDaoImpl extends BaseDaoImpl implements ProductS
 
 	}
 
-	/* (non-Javadoc)
-	 * @see com.vendertool.inventory.DBL.BO.MerchantProductDao#findByStockCode(com.vendertool.inventory.DBL.BO.MerchantProduct)
-	 */
-	public List<ProductSpecification> findByRefIdAndRefType(long refId,Byte refType) {
+
+	public List<ProductSpecification> findByproductSpecificationId(
+			long productSpecificationId) {
 		// TODO Auto-generated method stub
-		String sql = "select * from Product_Specification where ref_id = :ref_id and ref_type = :ref_type";
+		String sql = "select * from Product_Specification where product_specification_id = :product_specification_id";
 		SQLQuery query=getSession().createSQLQuery(sql);
-		query.setParameter("ref_id", refId);
+		query.setParameter("product_specification_id", productSpecificationId);
 		query.addEntity(ProductSpecification.class);
-		query.setParameter("ref_type", refType);
+		List<ProductSpecification> results = query.list();
+		return  results;
+	}
+	public List<ProductSpecification> findByproductProductId(long productId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from Product_Specification where product_id = :product_id";
+		SQLQuery query=getSession().createSQLQuery(sql);
+		query.setParameter("product_id", productId);
 		query.addEntity(ProductSpecification.class);
 		List<ProductSpecification> results = query.list();
 		return  results;
