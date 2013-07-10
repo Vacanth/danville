@@ -6,7 +6,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 
 public class BaseDaoImpl  extends HibernateDaoSupport {
-	static ApplicationContext appContext;
+	static private ApplicationContext appContext;
 	static{
 		appContext = new ClassPathXmlApplicationContext(
 				"BeanLocations.xml");
