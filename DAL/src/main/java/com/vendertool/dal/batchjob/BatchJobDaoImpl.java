@@ -57,4 +57,14 @@ public class BatchJobDaoImpl extends BaseDaoImpl implements BatchJobDao {
 		return  results;
 	}
 
+	public List<BatchJob> findByAccountId(long accountId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from batch_job where account_id = :account_id";
+		SQLQuery query=getSession().createSQLQuery(sql);
+		query.setParameter("account_id", accountId);
+		query.addEntity(BatchJob.class);
+		List<BatchJob> results = query.list();
+		return  results;
+	}
+
 }
