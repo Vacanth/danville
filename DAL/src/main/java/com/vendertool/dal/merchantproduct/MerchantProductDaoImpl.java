@@ -21,8 +21,7 @@ public class MerchantProductDaoImpl extends BaseDaoImpl implements MerchantProdu
 
 	public static MerchantProductDao getInstance() {
 		if (merchantProductDao == null) {
-			ApplicationContext appContext = new ClassPathXmlApplicationContext(
-					"BeanLocations.xml");
+			ApplicationContext appContext = getAppContext();
 			merchantProductDao = (MerchantProductDao) appContext
 					.getBean("merchantProductDAO");
 		}
