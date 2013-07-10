@@ -10,16 +10,18 @@ import com.vendertool.inventory.InventoryManagementServiceImpl;
 import com.vendertool.sharedtypes.rnr.AddProductRequest;
 
 @Component("productwriter")
-public class ProductWriter implements ItemWriter<AddProductRequest> {
+public class ProductWriter implements ItemWriter<ProductBean> {
 
 	@Override
-	public void write(List<? extends AddProductRequest> arg0) throws Exception {
-		for(AddProductRequest request : arg0){
+	public void write(List<? extends ProductBean> arg0) throws Exception {
+		for(ProductBean request : arg0){
 			if(request == null){
 				continue;
 			}
+			AddProductRequest request1 = new AddProductRequest();
 			IInventoryManagementService service = InventoryManagementServiceImpl.getInstance();
-			service.addProduct(request);
+			service.addProduct(request1);
+			//TODO add a helper to prepare Inventory req from bean
 		}
 	}
 }

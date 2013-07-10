@@ -11,7 +11,7 @@ public class BaseDaoImpl  extends HibernateDaoSupport {
 		appContext = new ClassPathXmlApplicationContext(
 				"BeanLocations.xml");
 	}
-	public static ApplicationContext getAppContext(){
+	protected static ApplicationContext getAppContext(){
 		if(appContext == null){
 			appContext = new ClassPathXmlApplicationContext(
 					"BeanLocations.xml");

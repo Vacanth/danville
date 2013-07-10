@@ -1,8 +1,11 @@
 package com.vendertool.batch.listing;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
+import org.springframework.batch.core.JobParameter;
+import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.annotation.BeforeStep;
 import org.springframework.batch.item.ItemReader;
@@ -11,49 +14,55 @@ import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.stereotype.Component;
 
-import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.bean.HeaderColumnNameTranslateMappingStrategy;
 
-import com.vendertool.sharedtypes.core.Product;
-import com.vendertool.sharedtypes.core.ProductCodeTypeEnum;
-import com.vendertool.sharedtypes.rnr.AddProductRequest;
+import com.vendertool.batch.mappers.BatchConstants;
+import com.vendertool.batch.mappers.CSVMapHelper;
+import com.vendertool.batch.mappers.CSVToBeanHelper;
+import com.vendertool.dal.batchjob.BatchJob;
+import com.vendertool.dal.batchjob.BatchJobDaoImpl;
 
 @Component("productreader")
-public class ProductReader implements ItemReader<AddProductRequest> {
+public class ProductReader implements ItemReader<ProductBean> {
 	private StepExecution stepExe;
-	static String csvFilename = "C:\\nw\\testfile1.csv";
-	static FileReader reader;
-	static {
-		try {
-			reader = new FileReader(csvFilename);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-	CSVReader csvReader = new CSVReader(reader);
+	private List<ProductBean> list;
+	private Iterator<ProductBean> productIterator;
 
 	@BeforeStep
 	public void setExecution(StepExecution se) {
 		stepExe = se;
+		JobParameters jobParams = se.getJobParameters();
+		Map<String, JobParameter> paramMap = jobParams.getParameters();
+		JobParameter jobParam = paramMap.get(BatchConstants.BATCH_JOB_ID);
+		List<BatchJob> batchJobList = null;
+		if(jobParam != null){
+			long batchJobId = (Long)jobParam.getValue();
+			if(batchJobId > 0 ){
+				batchJobList = BatchJobDaoImpl.getInstance().findByBatchJobId(batchJobId);
+			}
+		}
+		if(true){
+			HeaderColumnNameTranslateMappingStrategy<ProductBean> strategy = new HeaderColumnNameTranslateMappingStrategy<ProductBean>();
+			strategy.setType(ProductBean.class);
+			strategy.setColumnMapping(CSVMapHelper.getInstance()
+					.getProductFeedMapper());
+			CSVToBeanHelper<ProductBean> helper = new CSVToBeanHelper<ProductBean>();
+			list = helper.getMappedBean(strategy, "C:\\AppDev\\Sample.csv");
+			if(list != null){
+				productIterator = list.iterator();
+			}
+		}
 	}
 
 	@Override
-	public AddProductRequest read() throws Exception, UnexpectedInputException,
+	public ProductBean read() throws Exception, UnexpectedInputException,
 			ParseException, NonTransientResourceException {
-		String[] row = null;
-		if (stepExe.getCommitCount() == 0) {
-			csvReader.readNext();
+		if(productIterator == null){
+			return null;
 		}
-		if ((row = csvReader.readNext()) != null) {
-			AddProductRequest request = new AddProductRequest();
-			Product product = new Product();
-			request.setProduct(product);
-			product.setProductCode(row[1]);
-			product.setProductCodeType(ProductCodeTypeEnum.valueOf(row[4]));
-			product.setTitle(row[6]);
-			product.setSku(row[0]);
-			product.setQuantity((Integer.valueOf(row[10])));
-			product.setProductCode(row[1]);
-			return request;
+		if(productIterator.hasNext()){
+			ProductBean product = productIterator.next();
+			return product;
 		}
 		return null;
 	}
