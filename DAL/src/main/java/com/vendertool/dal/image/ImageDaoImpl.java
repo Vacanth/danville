@@ -66,5 +66,15 @@ public class ImageDaoImpl extends BaseDaoImpl implements ImageDao {
 		List<Image> results = query.list();
 		return  results;
 	}
+	public List<Image> findByAccountIdAndImageId(long accountId, long imageId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from image where account_id = :account_id and image_id = :image_id";
+		SQLQuery query=getSession().createSQLQuery(sql);
+		query.setParameter("account_id", accountId);
+		query.setParameter("image_id", imageId);
+		query.addEntity(Image.class);
+		List<Image> results = query.list();
+		return  results;
+	}
 
 }

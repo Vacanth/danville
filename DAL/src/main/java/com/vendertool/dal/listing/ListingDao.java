@@ -13,6 +13,7 @@ public interface ListingDao {
 
 	List<Listing> findByListingId(long listingId);
 	
-	List<Listing> findByAccountId(long listingId);
+	List<Listing> findByAccountId(long accountId);
+	List<Listing> findByAccountIdAndListingId(long accountId,long listingId);
 	
 }

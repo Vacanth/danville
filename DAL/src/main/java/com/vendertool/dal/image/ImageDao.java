@@ -12,5 +12,6 @@ public interface ImageDao {
 	void delete(Image image);
 
 	List<Image> findByAccountId(long accountId);
+	List<Image> findByAccountIdAndImageId(long accountId,long imageId);
 	
 }
