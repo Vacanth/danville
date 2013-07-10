@@ -1,6 +1,9 @@
 package com.vendertool.inventory;
 
 import com.vendertool.common.service.BaseVenderToolServiceImpl;
+import com.vendertool.dal.merchantproduct.MerchantProduct;
+import com.vendertool.dal.merchantproduct.MerchantProductDao;
+import com.vendertool.dal.merchantproduct.MerchantProductDaoImpl;
 import com.vendertool.sharedtypes.core.InventoryErrorCode;
 import com.vendertool.sharedtypes.core.Product;
 import com.vendertool.sharedtypes.core.VTError;
@@ -26,6 +29,13 @@ import com.vendertool.sharedtypes.rnr.UpdateProductResponse;
 
 public class InventoryManagementServiceImpl extends BaseVenderToolServiceImpl implements
 		IInventoryManagementService {
+	private static IInventoryManagementService s_self;
+	static public IInventoryManagementService getInstance(){
+		if(s_self == null){
+			s_self = new InventoryManagementServiceImpl();
+		}
+		return s_self;
+	}
 	
 	public GetProductResponse getProduct(String id) {
 		GetProductResponse response = new GetProductResponse();
@@ -50,6 +60,16 @@ public class InventoryManagementServiceImpl extends BaseVenderToolServiceImpl im
 		
 		AddProductResponse response = new AddProductResponse();
 		response.setProductId("P987654321");
+		MerchantProduct merchProduct = new MerchantProduct();
+		merchProduct.setAccountId(2345l);
+		merchProduct.setLastModifiedApp((byte)1);
+		merchProduct.setMerchantProductId(1234l);
+		merchProduct.setProductCode(product.getProductCode());
+		merchProduct.setProductCodeType((byte)product.getProductCodeType().getId());
+		merchProduct.setSku(product.getSku());
+		merchProduct.setTitle(product.getTitle());
+		MerchantProductDao dao = MerchantProductDaoImpl.getInstance();
+		dao.insert(merchProduct);
 		return response;
 	}
 

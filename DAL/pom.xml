@@ -1,11 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.vendertool</groupId>
+	<groupId>com.vendertool.dal</groupId>
 	<artifactId>DAL</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
+	<parent>
+		<groupId>com.vendertool</groupId>
+		<artifactId>VenderToolParent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
 
 	<name>DAL</name>
 	<url>http://maven.apache.org</url>
@@ -62,10 +66,6 @@
 			<version>5.1.24</version>
 		</dependency>
 	</dependencies>
-	<!-- <repositories>
-		<repository>
-			<id>HiveDB</id>
-			<url>http://www.hivedb.org/maven/</url>
-		</repository>
-	</repositories> -->
+	<!-- <repositories> <repository> <id>HiveDB</id> <url>http://www.hivedb.org/maven/</url> 
+		</repository> </repositories> -->
 </project>

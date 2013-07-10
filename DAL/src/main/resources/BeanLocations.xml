@@ -32,8 +32,8 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 				<value>com.vendertool.dal.productdescription.ProductDescription</value>
 				<value>com.vendertool.dal.productvariation.ProductVariation</value>
 				<value>com.vendertool.dal.account.Account</value>
-				<value>com.vendertool.dal.accountsubscription.AccountSubscription</value>
-				<value>com.vendertool.dal.accountmarketplace.AccountMarketplace</value>
+<!-- 				<value>com.vendertool.dal.accountsubscription.AccountSubscription</value>
+ -->				<value>com.vendertool.dal.accountmarketplace.AccountMarketplace</value>
 				<value>com.vendertool.dal.address.Address</value>
 			</list>
 		</property>
@@ -65,9 +65,9 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 			<bean id="accountDAO" class="com.vendertool.dal.account.AccountDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-		<bean id="accountSubscriptionDAO" class="com.vendertool.dal.accountsubscription.AccountSubscriptionDaoImpl">
+		<!-- <bean id="accountSubscriptionDAO" class="com.vendertool.dal.accountsubscription.AccountSubscriptionDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
+	</bean> -->
 		<bean id="accountMarketplaceDAO" class="com.vendertool.dal.accountmarketplace.AccountMarketplaceDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>

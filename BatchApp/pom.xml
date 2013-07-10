@@ -14,6 +14,12 @@
       This project is a minimal command line batch sample from Spring Batch.  
     ]]>
 	</description>
+	<parent>
+		<groupId>com.vendertool</groupId>
+		<artifactId>VenderToolParent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
 	<properties>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
 		<spring.framework.version>3.0.6.RELEASE</spring.framework.version>
@@ -39,11 +45,39 @@
 				</dependency>
 			</dependencies>
 		</profile>
+
+		<profile>
+			<id>test</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.1</version>
+						<executions>
+							<execution>
+								<phase>test</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<echo>Using env.test.properties</echo>
+										<copy file="src/main/resources/env.test.properties"
+											tofile="${project.build.outputDirectory}/env.properties" />
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.vendertool</groupId>
+			<groupId>com.vendertool.inventory</groupId>
 			<artifactId>Inventory</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
@@ -52,6 +86,11 @@
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>2.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
