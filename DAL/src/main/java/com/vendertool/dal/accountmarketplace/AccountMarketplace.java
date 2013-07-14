@@ -125,7 +125,8 @@ public class AccountMarketplace implements java.io.Serializable {
 	public void setMpTokenResponse(String mpTokenResponse) {
 		this.mpTokenResponse = mpTokenResponse;
 	}
-
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "TOKEN_EXPIRY_DATE", length = 19)
 	public Date getTokenExpiryDate() {
 		return TokenExpiryDate;
 	}
@@ -133,8 +134,7 @@ public class AccountMarketplace implements java.io.Serializable {
 	public void setTokenExpiryDate(Date tokenExpiryDate) {
 		TokenExpiryDate = tokenExpiryDate;
 	}
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "TOKEN_EXPERY_DATE", length = 19)
+	
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}

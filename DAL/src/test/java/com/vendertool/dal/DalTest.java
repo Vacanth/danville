@@ -3,8 +3,8 @@ package com.vendertool.dal;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.vendertool.dal.batchjob.BatchJob;
-import com.vendertool.dal.batchjob.BatchJobDao;
+import com.vendertool.dal.accountmarketplace.AccountMarketplace;
+import com.vendertool.dal.accountmarketplace.AccountMarketplaceDao;
 
 
 public class DalTest {
@@ -38,10 +38,11 @@ public class DalTest {
 		
 		try{
 			System.out.println("batch job  dal Test Began !!!");
-			BatchJobDao batchJobDao = (BatchJobDao) appContext.getBean("batchJobDao"); 
-			BatchJob batchJob = new BatchJob();
-			batchJob=(BatchJob) batchJobDao.findByBatchJobId(1).get(0);
-			System.out.println(batchJob.getFileName());
+			AccountMarketplaceDao accountMarketplaceDao = (AccountMarketplaceDao) appContext.getBean("accountMarketplaceDao"); 
+			AccountMarketplace accountMarketplace = new AccountMarketplace();
+			accountMarketplace.setAccountId((long) 1);
+			accountMarketplace=(AccountMarketplace) accountMarketplaceDao.findByAccountId(accountMarketplace).get(0);
+			System.out.println(accountMarketplace.getMpClientId());
 		} finally {
 		}
 	}
