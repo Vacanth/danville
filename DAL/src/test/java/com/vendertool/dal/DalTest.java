@@ -25,7 +25,7 @@ public class DalTest {
 		
 		try{
 			System.out.println("Account dal Test Began !!!");
-			ProductSpecificationDao accountDao = (ProductSpecificationDao) appContext.getBean("productSpecificationDAO"); 
+			ProductSpecificationDao productSpecificationDao = (ProductSpecificationDao) appContext.getBean("productSpecificationDAO"); 
 			 ProductSpecification productSpe = new ProductSpecification();
 			 productSpe.setCreateDate(new Date());
 			 productSpe.setProductId(123);
@@ -34,8 +34,8 @@ public class DalTest {
 			 productSpe.setHeight(new BigDecimal(12));
 			 productSpe.setWeightUnit( (byte)1);
 			 productSpe.setLastModifiedDate(new Date());
-			 productSpe.setProductSpecificationId(34566);
-			 accountDao.insert(productSpe);
+			 productSpe.setProductSpecificationId(34568);
+			 productSpecificationDao.insert(productSpe);
 		} finally {
 		}
 	}
