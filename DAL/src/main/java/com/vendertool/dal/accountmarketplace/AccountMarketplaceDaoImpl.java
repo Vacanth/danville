@@ -76,7 +76,7 @@ public class AccountMarketplaceDaoImpl extends BaseDaoImpl implements AccountMar
 
 	public List<AccountMarketplace> findByAccountAndMPId(
 			AccountMarketplace accountMarketplace) {
-		String sql = "select * from account_marketplace where account_id = : account_id and mp_id = :mp_id";
+		String sql = "select * from account_marketplace where account_id = :account_id and mp_id = :mp_id";
 		SQLQuery query=getSession().createSQLQuery(sql);
 		query.setParameter("account_id", accountMarketplace.getAccountId());
 		query.addEntity(AccountMarketplace.class);
@@ -86,8 +86,8 @@ public class AccountMarketplaceDaoImpl extends BaseDaoImpl implements AccountMar
 		return  results;
 	}
 
-	public List<AccountMarketplace> findByExperyDatetime(Date date) {
-		String sql = "select * from account_marketplace where expiry_date < = : expery_date";
+	public List<AccountMarketplace> findByExpiryDatetime(Date date) {
+		String sql = "select * from account_marketplace where expiry_date <= :expery_date";
 		SQLQuery query=getSession().createSQLQuery(sql);
 		query.setParameter("expery_date", date);
 		query.addEntity(AccountMarketplace.class);

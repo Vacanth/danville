@@ -14,6 +14,6 @@ public interface AccountMarketplaceDao {
 
 	List<AccountMarketplace> findByAccountId(AccountMarketplace accountMarketplace);
 	List<AccountMarketplace> findByAccountAndMPId(AccountMarketplace accountMarketplace);
-	List<AccountMarketplace> findByExperyDatetime(Date date);
+	List<AccountMarketplace> findByExpiryDatetime(Date date);
 	
 }
