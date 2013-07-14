@@ -25,7 +25,7 @@ public class AccountMarketplace implements java.io.Serializable {
 	private String mpClientSecretCode;
 	private String mpToken;
 	private String mpTokenResponse;
-	private Date TokenExperyDate;
+	private Date TokenExpiryDate;
 	private Date createDate;
 
 	public AccountMarketplace() {
@@ -126,12 +126,12 @@ public class AccountMarketplace implements java.io.Serializable {
 		this.mpTokenResponse = mpTokenResponse;
 	}
 
-	public Date getTokenExperyDate() {
-		return TokenExperyDate;
+	public Date getTokenExpiryDate() {
+		return TokenExpiryDate;
 	}
 
-	public void setTokenExperyDate(Date tokenExperyDate) {
-		TokenExperyDate = tokenExperyDate;
+	public void setTokenExperyDate(Date tokenExpiryDate) {
+		TokenExpiryDate = tokenExpiryDate;
 	}
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "TOKEN_EXPERY_DATE", length = 19)
