@@ -79,7 +79,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<bean id="addressDao" class="com.vendertool.dal.address.AddressDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="batchJobDao" class="com.vendertool.dal.address.BatchJobDaoImpl">
+	<bean id="batchJobDao" class="com.vendertool.dal.batchjob.BatchJobDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	    
