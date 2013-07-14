@@ -23,7 +23,7 @@ public class AccountMarketplaceDaoImpl extends BaseDaoImpl implements AccountMar
 		if (accountMarketplaceDao == null) {
 			ApplicationContext appContext = getAppContext();
 			accountMarketplaceDao = (AccountMarketplaceDao) appContext
-					.getBean("accountDao");
+					.getBean("accountMarketplaceDao");
 		}
 		return accountMarketplaceDao;
 	}
