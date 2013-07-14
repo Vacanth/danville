@@ -45,41 +45,41 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	</bean>
 	<!-- Hibernate session factory -->
 
-	<bean id="productSpecificationDAO" class="com.vendertool.dal.productspecification.ProductSpecificationDaoImpl">
+	<bean id="productSpecificationDao" class="com.vendertool.dal.productspecification.ProductSpecificationDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="imageDAO" class="com.vendertool.dal.image.ImageDaoImpl">
+	<bean id="imageDao" class="com.vendertool.dal.image.ImageDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-		<bean id="merchantProductDAO" class="com.vendertool.dal.merchantproduct.MerchantProductDaoImpl">
+		<bean id="merchantProductDao" class="com.vendertool.dal.merchantproduct.MerchantProductDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-		<bean id="productAttributeDAO" class="com.vendertool.dal.productattribute.ProductAttributeDaoImpl">
+		<bean id="productAttributeDao" class="com.vendertool.dal.productattribute.ProductAttributeDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-		<bean id="productDescriptionDAO" class="com.vendertool.dal.productdescription.ProductDescriptionDaoImpl">
+		<bean id="productDescriptionDao" class="com.vendertool.dal.productdescription.ProductDescriptionDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-		<bean id="productVariationDAO" class="com.vendertool.dal.productvariation.ProductVariationDaoImpl">
+		<bean id="productVariationDao" class="com.vendertool.dal.productvariation.ProductVariationDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-		<bean id="productVariationDetailsDAO" class="com.vendertool.dal.productvariationdetails.ProductVariationDetailsDaoImpl">
+		<bean id="productVariationDetailsDao" class="com.vendertool.dal.productvariationdetails.ProductVariationDetailsDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
-			<bean id="accountDAO" class="com.vendertool.dal.account.AccountDaoImpl">
+			<bean id="accountDao" class="com.vendertool.dal.account.AccountDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-		<!-- <bean id="accountSubscriptionDAO" class="com.vendertool.dal.accountsubscription.AccountSubscriptionDaoImpl">
+		<!-- <bean id="accountSubscriptionDao" class="com.vendertool.dal.accountsubscription.AccountSubscriptionDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean> -->
-		<bean id="accountMarketplaceDAO" class="com.vendertool.dal.accountmarketplace.AccountMarketplaceDaoImpl">
+		<bean id="accountMarketplaceDao" class="com.vendertool.dal.accountmarketplace.AccountMarketplaceDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-		<bean id="addressDAO" class="com.vendertool.dal.address.AddressDaoImpl">
+		<bean id="addressDao" class="com.vendertool.dal.address.AddressDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<bean id="batchJobDAO" class="com.vendertool.dal.address.BatchJobDaoImpl">
+	<bean id="batchJobDao" class="com.vendertool.dal.address.BatchJobDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	    

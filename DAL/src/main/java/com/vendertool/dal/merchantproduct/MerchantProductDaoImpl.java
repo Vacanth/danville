@@ -24,7 +24,7 @@ public class MerchantProductDaoImpl extends BaseDaoImpl implements MerchantProdu
 		if (merchantProductDao == null) {
 			ApplicationContext appContext = getAppContext();
 			merchantProductDao = (MerchantProductDao) appContext
-					.getBean("merchantProductDAO");
+					.getBean("merchantProductDao");
 		}
 		return merchantProductDao;
 	}
