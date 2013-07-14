@@ -19,6 +19,7 @@ public class ProductVariationDetails implements java.io.Serializable {
 
 	private long productVariationDetailsId;
 	private Long productVariationId;
+	private Long productId;
 	private String variationName;
 	private String variationValues;
 	private Date createDate;
@@ -86,5 +87,12 @@ public class ProductVariationDetails implements java.io.Serializable {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
+	@Column(name = "PRODUCT_ID")
+	public Long getProductId() {
+		return productId;
+	}
 
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
 }
