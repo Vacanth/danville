@@ -40,6 +40,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 <!-- 				<value>com.vendertool.dal.accountsubscription.AccountSubscription</value>
  -->				<value>com.vendertool.dal.accountmarketplace.AccountMarketplace</value>
 				<value>com.vendertool.dal.address.Address</value>
+				<value>com.vendertool.dal.batchjob.BatchJob</value>
 			</list>
 		</property>
 	</bean>
