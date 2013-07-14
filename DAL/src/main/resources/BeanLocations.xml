@@ -79,5 +79,8 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<bean id="addressDAO" class="com.vendertool.dal.address.AddressDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="batchJobDAO" class="com.vendertool.dal.address.BatchJobDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	    
 </beans>

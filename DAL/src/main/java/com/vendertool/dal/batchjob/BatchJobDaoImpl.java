@@ -22,7 +22,7 @@ public class BatchJobDaoImpl extends BaseDaoImpl implements BatchJobDao {
 		if (batchJobDao == null) {
 			ApplicationContext appContext = getAppContext();
 			batchJobDao = (BatchJobDao) appContext
-					.getBean("batchJobDao");
+					.getBean("batchJobDAO");
 		}
 		return batchJobDao;
 	}
