@@ -130,7 +130,7 @@ public class AccountMarketplace implements java.io.Serializable {
 		return TokenExpiryDate;
 	}
 
-	public void setTokenExperyDate(Date tokenExpiryDate) {
+	public void setTokenExpiryDate(Date tokenExpiryDate) {
 		TokenExpiryDate = tokenExpiryDate;
 	}
 	@Temporal(TemporalType.TIMESTAMP)
