@@ -19,7 +19,7 @@
 	<batch:job id="productFeed">
 		<batch:step id="productStep"  >			
 			<batch:tasklet  start-limit="1" >
-				<batch:chunk reader="productreader" writer="productwriter" commit-interval="5" />
+				<batch:chunk reader="productreader" writer="productwriter" commit-interval="15" />
 			</batch:tasklet>
 		</batch:step>
 	</batch:job> 

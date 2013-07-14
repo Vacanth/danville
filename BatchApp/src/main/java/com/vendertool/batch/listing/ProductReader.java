@@ -1,5 +1,7 @@
 package com.vendertool.batch.listing;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -14,41 +16,41 @@ import org.springframework.batch.item.ParseException;
 import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.stereotype.Component;
 
-import au.com.bytecode.opencsv.bean.HeaderColumnNameTranslateMappingStrategy;
-
 import com.vendertool.batch.mappers.BatchConstants;
 import com.vendertool.batch.mappers.CSVMapHelper;
-import com.vendertool.batch.mappers.CSVToBeanHelper;
 import com.vendertool.dal.batchjob.BatchJob;
 import com.vendertool.dal.batchjob.BatchJobDaoImpl;
 
 @Component("productreader")
 public class ProductReader implements ItemReader<ProductBean> {
-	private StepExecution stepExe;
 	private List<ProductBean> list;
 	private Iterator<ProductBean> productIterator;
+	private long userId;
 
 	@BeforeStep
 	public void setExecution(StepExecution se) {
-		stepExe = se;
 		JobParameters jobParams = se.getJobParameters();
 		Map<String, JobParameter> paramMap = jobParams.getParameters();
 		JobParameter jobParam = paramMap.get(BatchConstants.BATCH_JOB_ID);
 		List<BatchJob> batchJobList = null;
-		if(jobParam != null){
-			long batchJobId = (Long)jobParam.getValue();
-			if(batchJobId > 0 ){
-				batchJobList = BatchJobDaoImpl.getInstance().findByBatchJobId(batchJobId);
+		if (jobParam != null) {
+			long batchJobId = Long.valueOf(jobParam.getValue()+"");
+			if (batchJobId > 0) {
+				batchJobList = BatchJobDaoImpl.getInstance().findByBatchJobId(
+						batchJobId);
 			}
 		}
-		if(true){
-			HeaderColumnNameTranslateMappingStrategy<ProductBean> strategy = new HeaderColumnNameTranslateMappingStrategy<ProductBean>();
-			strategy.setType(ProductBean.class);
-			strategy.setColumnMapping(CSVMapHelper.getInstance()
-					.getProductFeedMapper());
-			CSVToBeanHelper<ProductBean> helper = new CSVToBeanHelper<ProductBean>();
-			list = helper.getMappedBean(strategy, "C:\\AppDev\\Sample.csv");
-			if(list != null){
+		if (batchJobList != null && batchJobList.size() > 0) {
+//		if(true){
+			try {
+				list = CSVMapHelper.getInstance().getProductBeans(batchJobList.get(0).getReqLocation());
+				userId = batchJobList.get(0).getAccountId(); 
+//				list = CSVMapHelper.getInstance().getProductBeans(null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (list != null) {
 				productIterator = list.iterator();
 			}
 		}
@@ -57,11 +59,12 @@ public class ProductReader implements ItemReader<ProductBean> {
 	@Override
 	public ProductBean read() throws Exception, UnexpectedInputException,
 			ParseException, NonTransientResourceException {
-		if(productIterator == null){
+		if (productIterator == null) {
 			return null;
 		}
-		if(productIterator.hasNext()){
+		if (productIterator.hasNext()) {
 			ProductBean product = productIterator.next();
+			product.setUserAccountId(userId);
 			return product;
 		}
 		return null;

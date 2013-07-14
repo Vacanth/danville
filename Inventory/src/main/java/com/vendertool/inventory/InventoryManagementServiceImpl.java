@@ -61,7 +61,7 @@ public class InventoryManagementServiceImpl extends BaseVenderToolServiceImpl im
 		AddProductResponse response = new AddProductResponse();
 		response.setProductId("P987654321");
 		MerchantProduct merchProduct = new MerchantProduct();
-		merchProduct.setAccountId(2345l);
+		merchProduct.setAccountId(request.getUserId());
 		merchProduct.setLastModifiedApp((byte)1);
 		merchProduct.setMerchantProductId(1234l);
 		merchProduct.setProductCode(product.getProductCode());

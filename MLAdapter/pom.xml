@@ -26,7 +26,7 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.vendertool</groupId>
+			<groupId>com.vendertool.sharedtypes</groupId>
 			<artifactId>SharedTypes</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

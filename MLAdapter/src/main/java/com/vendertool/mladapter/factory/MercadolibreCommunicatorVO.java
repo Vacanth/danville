@@ -1,6 +1,7 @@
 package com.vendertool.mladapter.factory;
 
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 
 public class MercadolibreCommunicatorVO {
 
@@ -12,6 +13,15 @@ public class MercadolibreCommunicatorVO {
 	private MediaType mediaType;
 	private MethodEnum methodEnum;
 	private Object requestObject;//It can be any object, this communicator don't need to understand any.
+	private MultivaluedMap<String, String> formData;
+
+	public MultivaluedMap<String, String> getFormData() {
+		return formData;
+	}
+
+	public void setFormData(MultivaluedMap<String, String> formData) {
+		this.formData = formData;
+	}
 
 	public Object getRequestObject() {
 		return requestObject;

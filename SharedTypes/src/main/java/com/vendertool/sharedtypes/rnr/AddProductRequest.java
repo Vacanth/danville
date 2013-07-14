@@ -7,6 +7,15 @@ import com.vendertool.sharedtypes.core.Product;
 @XmlRootElement
 public class AddProductRequest extends BaseRequest{
 	private Product product;
+	private long userId;
+	
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
 
 	public AddProductRequest(){}
 	
