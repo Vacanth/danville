@@ -1,5 +1,6 @@
 package com.vendertool.dal.accountmarketplace;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -13,5 +14,6 @@ public interface AccountMarketplaceDao {
 
 	List<AccountMarketplace> findByAccountId(AccountMarketplace accountMarketplace);
 	List<AccountMarketplace> findByAccountAndMPId(AccountMarketplace accountMarketplace);
+	List<AccountMarketplace> findByExperyDatetime(Date date);
 	
 }

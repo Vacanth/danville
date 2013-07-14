@@ -2,6 +2,7 @@
  * 
  */
 package com.vendertool.dal.accountmarketplace;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
@@ -80,6 +81,15 @@ public class AccountMarketplaceDaoImpl extends BaseDaoImpl implements AccountMar
 		query.setParameter("account_id", accountMarketplace.getAccountId());
 		query.addEntity(AccountMarketplace.class);
 		query.setParameter("mp_id", accountMarketplace.getMpId());
+		query.addEntity(AccountMarketplace.class);
+		List<AccountMarketplace> results = query.list();
+		return  results;
+	}
+
+	public List<AccountMarketplace> findByExperyDatetime(Date date) {
+		String sql = "select * from account_marketplace where expiry_date < = : expery_date";
+		SQLQuery query=getSession().createSQLQuery(sql);
+		query.setParameter("expery_date", date);
 		query.addEntity(AccountMarketplace.class);
 		List<AccountMarketplace> results = query.list();
 		return  results;
