@@ -2,9 +2,12 @@ package com.vendertool.dal.batchworklog;
 // default package
 // Generated Jul 20, 2013 2:19:14 PM by Hibernate Tools 3.4.0.CR1
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -58,6 +61,7 @@ public class BatchWorkLog implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "batch_work_log_id", unique = true, nullable = false)
 	public long getBatchWorkLogId() {
 		return this.batchWorkLogId;
