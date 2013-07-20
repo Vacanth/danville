@@ -1,4 +1,4 @@
-package returnpolicy;
+package com.vendertool.dal.returnpolicy;
 
 // Generated Jul 6, 2013 10:59:54 PM by Hibernate Tools 3.4.0.CR1
 
