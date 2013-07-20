@@ -10,18 +10,14 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Amount {
 	private static final Locale DEFAULT_LOCALE = Locale.US;
 	private static final Currency DEFAULT_CURRENCY = Currency.getInstance(DEFAULT_LOCALE);
 	
-	@XmlJavaTypeAdapter(VTBigDecimalJXBAdapter.class)
-	private BigDecimal value;
+	private double value;
 
-	@XmlJavaTypeAdapter(VTCurrencyJXBAdapter.class)
 	private Currency currency;
 	
-	@XmlJavaTypeAdapter(VTLocaleJXBAdapter.class)
 	private Locale locale;
 	
 	public Amount() {
@@ -48,8 +44,7 @@ public class Amount {
 			
 		}
 		
-		BigDecimal bd = new BigDecimal(String.valueOf(value));
-		this.value = bd.setScale(2, RoundingMode.CEILING);
+		this.value = value;
 		this.currency = currency;
 		this.locale = locale;
 	}
@@ -68,10 +63,10 @@ public class Amount {
 		return currencyFormatter.format(value);
 	}
 	
-	public BigDecimal getValue() {
+	public double getValue() {
 		return value;
 	}
-	public void setValue(BigDecimal value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 	public Currency getCurrency() {
