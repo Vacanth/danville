@@ -80,5 +80,16 @@ public class BatchWorkLogDaoImpl extends BaseDaoImpl implements BatchWorkLogDao 
 		List<BatchWorkLog> results = query.list();
 		return  results;
 	}
+	public List<BatchWorkLog> findByBatchJobId(long batchJobId, Byte status) {
+
+		String sql = "select * from batch_work_log where batch_id = :batch_job_id and status = :status";
+		SQLQuery query=getSession().createSQLQuery(sql);
+		query.setParameter("batch_job_id", batchJobId);
+		query.addEntity(BatchWorkLog.class);
+		query.setParameter("status", status);
+		query.addEntity(BatchWorkLog.class);
+		List<BatchWorkLog> results = query.list();
+		return  results;
+	}
 	
 }

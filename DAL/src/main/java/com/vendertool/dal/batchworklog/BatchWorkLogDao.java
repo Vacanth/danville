@@ -12,6 +12,7 @@ public interface BatchWorkLogDao {
 	void delete(BatchWorkLog batchWorkLog);
 
 	List<BatchWorkLog> findByBatchJobId(long batchId);
+	List<BatchWorkLog> findByBatchJobId(long batchId,Byte status);
 	List<BatchWorkLog> findByBatchWorkLogId(long batchWorkLogId);
 	
 }
