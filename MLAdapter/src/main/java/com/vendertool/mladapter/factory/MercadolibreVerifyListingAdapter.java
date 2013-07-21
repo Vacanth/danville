@@ -13,30 +13,29 @@ import com.vendertool.sharedtypes.core.Listing.ListingFormatEnum;
 import com.vendertool.sharedtypes.core.PaymentMethod;
 import com.vendertool.sharedtypes.core.PaymentMethod.PaymentTypeEnum;
 import com.vendertool.sharedtypes.core.Product;
-import com.vendertool.sharedtypes.rnr.AddListingRequest;
-import com.vendertool.sharedtypes.rnr.AddListingResponse;
 import com.vendertool.sharedtypes.rnr.BaseRequest;
 import com.vendertool.sharedtypes.rnr.BaseResponse;
+import com.vendertool.sharedtypes.rnr.VerifyListingRequest;
+import com.vendertool.sharedtypes.rnr.VerifyListingResponse;
 
-public class MercadolibreListingAdapter implements
-		IBaseMercadolibreOperationAdapter {
+public class MercadolibreVerifyListingAdapter implements
+IBaseMercadolibreOperationAdapter {
 
 	private static String VERIFY_LISTING_URL = "https://api.mercadolibre.com/items/validate?access_token=";
-	private static String LISTING_URL = "https://api.mercadolibre.com/items?access_token=";
-	private static MercadolibreListingAdapter uniqInstance;
+	private static MercadolibreVerifyListingAdapter uniqInstance;
 
-	private MercadolibreListingAdapter() {
+	private MercadolibreVerifyListingAdapter() {
 	}
 
-	public static synchronized MercadolibreListingAdapter getInstance() {
+	public static synchronized MercadolibreVerifyListingAdapter getInstance() {
 		if (uniqInstance == null) {
-			uniqInstance = new MercadolibreListingAdapter();
+			uniqInstance = new MercadolibreVerifyListingAdapter();
 		}
 		return uniqInstance;
 	}
 
 	public BaseResponse execute(BaseRequest request) {
-		AddListingRequest listingRequest = (AddListingRequest) request;
+		VerifyListingRequest listingRequest = (VerifyListingRequest) request;
 //		User
 		Item item = adaptToRequest(listingRequest);
 		//Call Verify
@@ -52,37 +51,12 @@ public class MercadolibreListingAdapter implements
 			throw new RuntimeException("Failed Listing validation : HTTP error code : "
 					+ response.getStatus());
 		}
+		VerifyListingResponse vlResponse = new VerifyListingResponse();
 		
-		//Call Add listing
-		communicatorVO.setTargetURL(LISTING_URL+listingRequest.getUserAccessToken());
-		response = communicator.call(communicatorVO);
-		if (response.getStatus() != 201) {
-			throw new RuntimeException("Failed : HTTP error code : "
-					+ response.getStatus());
-		}
-		
-		String output = (String) response.getEntity(String.class);
-		Item responseItem = readItem(output);
-		
-		AddListingResponse addListingResponse = adaptTOResponse(responseItem);
-		
-		return addListingResponse;
+		return vlResponse;
 	}
 
-	private AddListingResponse adaptTOResponse(Item responseItem) {
-		AddListingResponse response = new AddListingResponse();
-		response.setListingId(responseItem.getId());
-		return response;
-	}
-
-	private Item readItem(String output) {
-		Item response = null;
-		Gson gson = new Gson();
-		response = gson.fromJson(output, Item.class);
-		return response;
-	}
-
-	private Item adaptToRequest(AddListingRequest listingRequest) {
+	private Item adaptToRequest(VerifyListingRequest listingRequest) {
 		if (listingRequest == null) {
 			return null;
 		}

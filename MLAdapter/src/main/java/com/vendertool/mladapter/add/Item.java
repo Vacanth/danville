@@ -16,7 +16,7 @@ public class Item{
    	private List coverage_areas;
    	private String currency_id;
    	private String date_created;
-   	private List descriptions;
+   	private String description;
    	private Geolocation geolocation;
    	private String id;
    	private Number initial_quantity;
@@ -146,11 +146,11 @@ public class Item{
 	public void setDate_created(String date_created){
 		this.date_created = date_created;
 	}
- 	public List getDescriptions(){
-		return this.descriptions;
+ 	public String getDescription(){
+		return this.description;
 	}
-	public void setDescriptions(List descriptions){
-		this.descriptions = descriptions;
+	public void setDescription(String descriptions){
+		this.description = descriptions;
 	}
  	public Geolocation getGeolocation(){
 		return this.geolocation;

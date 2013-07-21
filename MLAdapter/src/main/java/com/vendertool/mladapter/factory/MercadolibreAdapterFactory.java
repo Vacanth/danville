@@ -4,6 +4,7 @@ import com.vendertool.sharedtypes.rnr.AddListingRequest;
 import com.vendertool.sharedtypes.rnr.BaseRequest;
 import com.vendertool.sharedtypes.rnr.GetListingRequest;
 import com.vendertool.sharedtypes.rnr.GetUserTokenRequest;
+import com.vendertool.sharedtypes.rnr.VerifyListingRequest;
 
 public class MercadolibreAdapterFactory {
 
@@ -27,6 +28,8 @@ public class MercadolibreAdapterFactory {
 			return MercadolibreGetListingAdapter.getInstance();
 		}else if(request instanceof GetUserTokenRequest){
 			return MercadolibreUserAdapter.getInstance();
+		}else if(request instanceof VerifyListingRequest){
+			return MercadolibreVerifyListingAdapter.getInstance();
 		}
 		return null;
 	}
