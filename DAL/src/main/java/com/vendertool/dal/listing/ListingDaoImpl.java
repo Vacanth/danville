@@ -86,7 +86,6 @@ public class ListingDaoImpl extends com.vendertool.dal.BaseDaoImpl implements Li
 		String sql = "select * from listing where account_id = :account_id and listing_id = :listing_id";
 		SQLQuery query=getSession().createSQLQuery(sql);
 		query.setParameter("account_id", accountId);
-		query.addEntity(Listing.class);
 		query.setParameter("listing_id", listingId);
 		query.addEntity(Listing.class);
 		List<Listing> results = query.list();

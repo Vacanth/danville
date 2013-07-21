@@ -71,7 +71,6 @@ public class ImageDaoImpl extends BaseDaoImpl implements ImageDao {
 		String sql = "select * from image where account_id = :account_id and image_id = :image_id";
 		SQLQuery query=getSession().createSQLQuery(sql);
 		query.setParameter("account_id", accountId);
-		query.addEntity(Image.class);
 		query.setParameter("image_id", imageId);
 		query.addEntity(Image.class);
 		List<Image> results = query.list();

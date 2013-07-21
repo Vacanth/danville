@@ -70,7 +70,6 @@ public class ProductVariationDetailsDaoImpl extends BaseDaoImpl implements Produ
 		String sql = "select * from Product_Variation_Details where product_id = :product_id and product_variations_id = :product_variations_id";
 		SQLQuery query=getSession().createSQLQuery(sql);
 		query.setParameter("product_id", productVariationId);
-		query.addEntity(ProductVariationDetails.class);
 		query.setParameter("product_variations_id", productVariationId);
 		query.addEntity(ProductVariationDetails.class);
 		List<ProductVariationDetails> results = query.list();

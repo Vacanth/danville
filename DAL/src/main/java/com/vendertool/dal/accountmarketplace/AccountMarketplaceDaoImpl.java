@@ -79,7 +79,6 @@ public class AccountMarketplaceDaoImpl extends BaseDaoImpl implements AccountMar
 		String sql = "select * from account_marketplace where account_id = :account_id and mp_id = :mp_id";
 		SQLQuery query=getSession().createSQLQuery(sql);
 		query.setParameter("account_id", accountMarketplace.getAccountId());
-		query.addEntity(AccountMarketplace.class);
 		query.setParameter("mp_id", accountMarketplace.getMpId());
 		query.addEntity(AccountMarketplace.class);
 		List<AccountMarketplace> results = query.list();
