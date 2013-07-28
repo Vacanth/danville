@@ -13,20 +13,20 @@ public interface FileMapperHelper {
 
 	void deleteRootFolder(String rootFolderName);
 
-	void uploadFile(String rootFolderName, String fileName, File file);
+	void uploadFile(String userName,String rootFolderName, String fileName, File file);
 	
-	void uploadFile(String rootFolderName, Long accountId,InputStream imageStream);
+	void uploadFile(String userName,String rootFolderName, Long accountId,InputStream imageStream);
 
-	void deleteFile(String rootFolderName, String fileName);
+	void deleteFile(String userName,String rootFolderName, String fileName);
 
-	void makePublic(String rootFolderName, String string);
+	void makePublic(String userName,String rootFolderName, String string);
 
-	boolean isFilePublic(String rootFolderName, String keyName);
+	boolean isFilePublic(String userName,String rootFolderName, String keyName);
 
-	boolean downloadFile(String rootFolderName, Long accountId, String fileName,File outputFile);
+	boolean downloadFile(String userName,String rootFolderName, Long accountId, String fileName,File outputFile);
 
-	InputStream downloadFile(String rootFolderName, String keyName);
+	InputStream downloadFile(String userName,String rootFolderName, String keyName);
 
-	String getFileUrl(String rootFolderName, String keyName);
+	String getFileUrl(String userName,String rootFolderName, String keyName);
 
 }

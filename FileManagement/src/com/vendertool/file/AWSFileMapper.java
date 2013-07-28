@@ -14,10 +14,13 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.AccessControlList;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.Grant;
 import com.amazonaws.services.s3.model.Permission;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.sns.model.NotFoundException;
 
 public class AWSFileMapper implements FileMapperHelper {
 
@@ -51,22 +54,30 @@ public class AWSFileMapper implements FileMapperHelper {
 	}
 
 	@Override
-	public void uploadFile(String rootFolderName, String fileName, File file) {
-		s3.putObject(rootFolderName, fileName, file);
+	public void uploadFile(String userName,String rootFolderName, String fileName, File file) {
+		
+		
+		try {
+			s3.getObject(new GetObjectRequest(rootFolderName, fileName).withKey(fileName));
+
+	    } catch (NotFoundException nfe) {
+	    	s3.putObject(new PutObjectRequest(rootFolderName, fileName, file).withKey(userName));
+	    }
+			
 	}
 
 	@Override
-	public void deleteFile(String rootFolderName, String fileName) {
-		s3.deleteObject(rootFolderName, fileName);
+	public void deleteFile(String userName,String rootFolderName, String fileName) {
+		s3.deleteObject(new DeleteObjectRequest(rootFolderName, fileName).withKey(userName));
 	}
 
 	@Override
-	public void makePublic(String rootFolderName, String fileName) {
+	public void makePublic(String userName,String rootFolderName, String fileName) {
 		s3.setObjectAcl(rootFolderName, fileName, CannedAccessControlList.PublicRead);
 	}
 
 	@Override
-	public boolean isFilePublic(String rootFolderName, String fileName) {
+	public boolean isFilePublic(String userName,String rootFolderName, String fileName) {
 		AccessControlList acl = s3.getObjectAcl(rootFolderName, fileName);
 		for (Iterator<Grant> iterator = acl.getGrants().iterator(); iterator.hasNext();) {
 			Grant grant = iterator.next();
@@ -77,7 +88,7 @@ public class AWSFileMapper implements FileMapperHelper {
 	}
 
 	@Override
-	public boolean downloadFile(String rootFolderName, Long accountId, String fileName,
+	public boolean downloadFile(String userName,String rootFolderName, Long accountId, String fileName,
 			File outputFile) {
 		String key = accountId + "";
 		try{
@@ -93,21 +104,21 @@ public class AWSFileMapper implements FileMapperHelper {
 	}
 
 	@Override
-	public void uploadFile(String rootFolderName, Long accountId,
+	public void uploadFile(String userName,String rootFolderName, Long accountId,
 			InputStream stream) {
 		String key = accountId + "";
 		s3.putObject(rootFolderName, key, stream, null);
 	}
 
 	@Override
-	public InputStream downloadFile(String rootFolderName, String keyName) {
+	public InputStream downloadFile(String userName,String rootFolderName, String keyName) {
 		S3Object s3Object = s3.getObject(rootFolderName, keyName);
 		return s3Object.getObjectContent();
 	}
 
 	@Override
-	public String getFileUrl(String rootFolderName, String keyName) {
-		if(isFilePublic(rootFolderName, keyName))
+	public String getFileUrl(String userName,String rootFolderName, String keyName) {
+		if(isFilePublic(userName,rootFolderName, keyName))
 			return buildPublicFileURL(rootFolderName, keyName);
 		else return null;
 	}

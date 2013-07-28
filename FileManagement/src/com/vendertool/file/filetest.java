@@ -23,7 +23,7 @@ public class filetest {
 		}
 		fileMapperHelper.deleteRootFolder("testmurali");
 		try {
-			fileMapperHelper.uploadFile("mybucket","testfile", createSampleFile());
+			fileMapperHelper.uploadFile("SellerAccountName","mybucket","testfile", createSampleFile());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
