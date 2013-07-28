@@ -88,6 +88,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.vendertool.metadata</groupId>
+			<artifactId>MetaData</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>net.sf.opencsv</groupId>
 			<artifactId>opencsv</artifactId>
 			<version>2.3</version>
@@ -157,6 +162,11 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.14</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.12</version>
 		</dependency>
 	</dependencies>
 

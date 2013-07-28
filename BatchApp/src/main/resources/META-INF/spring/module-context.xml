@@ -44,4 +44,14 @@
 			</batch:tasklet>
 		</batch:step>
 	</batch:job>
+	
+	<batch:job id="categorySync">
+		<batch:step id="categorySyncStep">
+			<batch:tasklet transaction-manager="transactionManager"
+				start-limit="1">
+				<batch:chunk reader="categorySyncReader" writer="categorySyncWriter"
+					commit-interval="100" />
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
 </beans>
