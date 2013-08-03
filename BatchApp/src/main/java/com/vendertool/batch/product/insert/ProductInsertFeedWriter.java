@@ -51,7 +51,7 @@ public class ProductInsertFeedWriter implements ItemWriter<BatchWorkLog> {
 			req.setUserAccessToken(token);
 
 			Listing listing = BatchListingHelper.getInstance().adaptToListing(
-					productBean, se.getStartTime());
+					null, se.getStartTime());//TOD fix the null
 			req.setListing(listing);
 			IBaseMercadolibreOperationAdapter adapter = MercadolibreAdapterFactory
 					.getInstance().getOperationAdapter(req);

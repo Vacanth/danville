@@ -25,7 +25,7 @@ import com.vendertool.sharedtypes.rnr.VerifyListingRequest;
 import com.vendertool.sharedtypes.rnr.VerifyListingResponse;
 
 @Component("productValidateWriter")
-public class ProductValidateFeedWriter implements ItemWriter<BatchWorkLog> {
+public class ProductValidateFeedWriter implements ItemWriter<List<ProductBean>> {
 
 	Map<String, String> jobParams;
 	private static Gson gson = new Gson();
@@ -37,38 +37,58 @@ public class ProductValidateFeedWriter implements ItemWriter<BatchWorkLog> {
 	}
 
 	@Override
-	public void write(List<? extends BatchWorkLog> items) throws Exception {
+	public void write(List<? extends List<ProductBean>> items) throws Exception {
 
 		if (items == null) {
 			return;
 		}
-
-		for (BatchWorkLog bean : items) {
-			if (bean == null) {
+		String token = null;
+		Listing listing = null;
+		for (List<ProductBean> beans : items) {
+			if (beans == null) {
 				continue;
 			}
-			byte[] request = bean.getRequest();
-			String requestString = new String(request);
-			ProductBean productBean = gson.fromJson(requestString,
-					ProductBean.class);
-			String token = UserUtils.getInstance().getUserAccessToken(
-					productBean.getUserAccountId());
+
+			for (ProductBean productBean : beans) {
+				if (token == null) {
+					token = UserUtils.getInstance().getUserAccessToken(
+							productBean.getUserAccountId());
+					break;
+				}
+			}
+			listing = BatchListingHelper.getInstance().adaptToListing(
+					beans, se.getStartTime());
+			if (listing == null) {
+				continue;
+			}
+
 			VerifyListingRequest req = new VerifyListingRequest();
 			req.setUserAccessToken(token);
-
-			Listing listing = BatchListingHelper.getInstance().adaptToListing(
-					productBean, se.getStartTime());
 			req.setListing(listing);
 			IBaseMercadolibreOperationAdapter adapter = MercadolibreAdapterFactory
 					.getInstance().getOperationAdapter(req);
-			VerifyListingResponse response = (VerifyListingResponse)adapter.execute(req);
+			VerifyListingResponse response = (VerifyListingResponse) adapter
+					.execute(req);
 			gson.toJson(response);
-			
-			//Check if there are any errors in the response. Update the response in the work log table.
-			bean.setStatus((byte)VenderBatchStatus.RECORD_VALIDATION_SUCESS.getValue());
-			//TODO update the response in bean, that needs to be generated in output file.
 
-			BatchWorkLogDaoImpl.getInstance().update(bean);
+			updateStatus(beans,
+					(byte) VenderBatchStatus.RECORD_VALIDATION_SUCESS
+							.getValue());
+
+		}
+	}
+
+	// Update work log
+	private void updateStatus(List<ProductBean> beans, byte value) {
+		if (beans == null) {
+			return;
+		}
+		for (ProductBean proBean : beans) {
+			if (proBean == null) {
+				continue;
+			}
+			BatchWorkLogDaoImpl.getInstance().updateStatusByWorkLogID(
+					proBean.getRefId(), value);
 		}
 	}
 }

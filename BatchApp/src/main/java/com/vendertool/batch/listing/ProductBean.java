@@ -4,6 +4,7 @@ import java.util.Map;
 
 public class ProductBean {
 
+	private long refId;
 	private long userAccountId;
 	private String productCode;
 	private String productCodeType;
@@ -22,7 +23,12 @@ public class ProductBean {
 	private Map<String,String> variations;
 	private Map<String,String> specifications;
 	
-	
+	public long getRefId() {
+		return refId;
+	}
+	public void setRefId(long refId) {
+		this.refId = refId;
+	}
 	public String getListingTypeId() {
 		return listingTypeId;
 	}

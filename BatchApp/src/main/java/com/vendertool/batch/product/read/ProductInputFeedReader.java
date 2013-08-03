@@ -44,6 +44,7 @@ public class ProductInputFeedReader implements ItemReader<ProductBean> {
 		if (batchJobList != null && batchJobList.size() > 0) {
 //		if(true){
 			try {
+//				AwsFileUtils
 				list = CSVMapHelper.getInstance().getProductBeans(batchJobList.get(0).getReqLocation());
 				userId = batchJobList.get(0).getAccountId(); 
 //				list = CSVMapHelper.getInstance().getProductBeans(null);

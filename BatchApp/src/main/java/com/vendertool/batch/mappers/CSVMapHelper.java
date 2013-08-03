@@ -1,8 +1,9 @@
 package com.vendertool.batch.mappers;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -14,6 +15,7 @@ import au.com.bytecode.opencsv.bean.CsvToBean;
 import au.com.bytecode.opencsv.bean.HeaderColumnNameTranslateMappingStrategy;
 
 import com.vendertool.batch.listing.ProductBean;
+import com.vendertool.fileutil.AwsFileUtils;
 
 public class CSVMapHelper {
 
@@ -53,15 +55,18 @@ public class CSVMapHelper {
 		CSVReader reader = null;
 		List<ProductBean> list = null;
 		CsvToBean<ProductBean> csvToBean = new CsvToBean<ProductBean>();
-		reader = new CSVReader(new InputStreamReader(new FileInputStream(
-				batchReqFileLocation)));
+		InputStream input = AwsFileUtils.getInstance().downloadFile("testfile_dynamic_variations.csv", "seller_data");
+		if(input  == null){
+			return new ArrayList<ProductBean>();
+		}
+		reader = new CSVReader(new InputStreamReader(input));
 		if (reader != null) {
 			list = csvToBean.parse(strategy, reader);
 		}
 		// ReadHeader again
-		reader = new CSVReader(new InputStreamReader(new FileInputStream(
-				batchReqFileLocation)));
+		reader = new CSVReader(new InputStreamReader(input));
 		processorHeaders(reader, list);
+		input.close();
 		return list;
 	}
 
